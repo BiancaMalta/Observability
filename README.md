@@ -25,7 +25,7 @@ Resolvi verificar cada página ativa, o me trouxe o seguinte feedback:
 **Meu questionamento é porque ele não entrou automaticamente, já que estava no código.**
 
 
-3. A página de votação estava ativa, porém, ao tentar votar, ela me dava o resposta abaixo:
+3. A página de votação estava ativa, porém, ao tentar votar, ela me dava a resposta abaixo:
 
 <img src="https://github.com/BiancaMalta/Observability/assets/92928037/4188d002-c1bd-47e1-993d-0cdf1f7a98d6" width="70%"/>
 
