@@ -26,11 +26,11 @@ Resolvi verificar cada página ativa, o me trouxe o seguinte feedback:
 
 <img src="https://github.com/BiancaMalta/Observability/assets/92928037/4188d002-c1bd-47e1-993d-0cdf1f7a98d6" width="70%"/>
 
-Imaginei que o banco de dados não estava conectado e, ao averiguar os contêineres, notei que o postgresql e o prometheus estavam desconectados.
+Imaginei que o banco de dados não estava conectado e, ao averiguar os contêineres, notei que o redis e o prometheus estavam desconectados.
 
 <img src="https://github.com/BiancaMalta/Observability/assets/92928037/abd797c0-dc4a-4fde-b321-69ba5ac68a13" width="70%"/>
 
-Tentei start eles novamente, ação que funcionou apenas com o banco de dados, possibilitando a votação.
+Tentei start eles novamente, ação que funcionou apenas com o armazenamento de estrutura de dados em memória, possibilitando a votação.
 
 <img src="https://github.com/BiancaMalta/Observability/assets/92928037/8bf3b446-aafc-46c8-a925-8fcf3d2f7972" width="45%"/>
 
