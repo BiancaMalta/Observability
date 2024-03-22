@@ -1,0 +1,8 @@
+Flask
+Redis
+gunicorn
+prometheus-flask-exporter
+prometheus-client
+mock
+flake8
+watchdog

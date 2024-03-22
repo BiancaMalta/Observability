@@ -1,0 +1,13 @@
+{
+  "name": "app-voting",
+  "version": "0.0.1",
+  "description": "Application for devops training",
+  "author": "Wilton Guilherme",
+  "license": "MIT",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^23.0.2"
+  }
+}

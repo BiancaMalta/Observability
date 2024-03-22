@@ -1,0 +1,88 @@
+version: "3.8"
+
+services: 
+
+  frontend:
+    container_name: frontend
+    hostname: frontend
+    restart: always
+    image: devinfrabr/frontend:latest
+    #build: 
+    #  dockerfile: microservices/frontend/Dockerfile
+    volumes:
+      - ./microservices/frontend:/app     
+    environment:
+      APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: votes
+    ports: 
+      - "3000:3000"
+    networks:
+      - voting
+
+  backend: 
+    container_name: backend
+    hostname: backend
+    restart: always
+    image: devinfrabr/backend:latest    
+    #build: 
+    #  dockerfile: ./microservices/backend/Dockerfile
+    volumes:
+      - ./microservices/backend:/app
+    environment:
+      REDIS_HOST: redis
+    ports:  
+      - "8080:80"
+    networks:
+      - voting
+
+  worker:
+    container_name: worker
+    hostname: worker
+    restart: always
+    image: devinfrabr/worker:latest    
+    #build: 
+    #  dockerfile: microservices/worker/Dockerfile
+    #volumes:
+    #  - ./microservices/worker:/app
+    environment:
+      DATABASE_HOST: database
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: votes
+      REDIS_HOST: redis
+    ports:  
+      - "3001:3000"
+    networks:
+      - voting
+
+  database:
+    container_name: database
+    hostname: database
+    image: postgres:15-alpine
+    restart: always
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres 
+      POSTGRES_DB: votes
+    volumes: 
+      - "db-data:/var/lib/postgresql/data"
+    ports: 
+      - "5432:5432"
+    networks:
+      - voting
+
+  redis: 
+    container_name: redis 
+    hostname: redis
+    image: redis:alpine
+    networks:
+      - voting        
+
+volumes: 
+   db-data:    
+
+networks:
+  voting: 
