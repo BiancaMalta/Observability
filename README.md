@@ -10,19 +10,22 @@ Tentei solucionar limpando o docker e subindo novamente o Docker Compose:
 docker system prune
 docker-compose up -d
 ```
- <img align="right" src="https://github.com/BiancaMalta/Observability/assets/92928037/2d0f2d92-932e-4c0d-b3f4-dc1beafdaca4" width="45%"/>
+Entretanto, o erro persistiu. Visto isso, aumentei o valor do timeout configurando a variável de ambiente: 
+```
+export COMPOSE_HTTP_TIMEOUT=120
+docker-compose up -d
+```
+No entanto, o erro continuou.
 
-Entretanto, o erro persistiu. 
-<br/>
+<img align="right" src="https://github.com/BiancaMalta/Observability/assets/92928037/2d0f2d92-932e-4c0d-b3f4-dc1beafdaca4" width="45%"/>
 Resolvi verificar cada página ativa, o me trouxe o seguinte feedback:
 
 2. Grafana não havia logado, cheguei a criar uma conta, entretanto ele não aceitou. Como segunda medida, procurei no código um usuário e uma senha, encontrando `adatech` e `adatech@2233`o que permitiu o meu login. 
-<br/>
 
 **Meu questionamento é porque ele não entrou automaticamente, já que estava no código.**
 
 
-3. A página de votação estava ativa, porém, ao tentar votar, ela me dava o seguinte resposta:
+3. A página de votação estava ativa, porém, ao tentar votar, ela me dava o resposta abaixo:
 
 <img src="https://github.com/BiancaMalta/Observability/assets/92928037/4188d002-c1bd-47e1-993d-0cdf1f7a98d6" width="70%"/>
 
