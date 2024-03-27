@@ -171,7 +171,7 @@ services:
 ## Log Collector
   filebeat:
     image: docker.elastic.co/beats/filebeat:8.12.2
-    container_name: filebear
+    container_name: filebeat
     user: root
     volumes:
       - ./config/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
