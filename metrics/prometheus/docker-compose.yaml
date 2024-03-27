@@ -160,14 +160,14 @@ services:
     networks:
       - monitoring      
 
-  #seed: 
-  #  container_name: seed
-  #  hostname: seed
-  #  image: devinfrabr/seed:latest
-  #  links:
-  #    - backend
-  #  networks:
-  #    - monitoring 
+  seed: 
+    container_name: seed
+    hostname: seed
+    image: devinfrabr/seed:latest
+    links:
+      - backend
+    networks:
+      - monitoring 
 
 volumes:
     prometheus_data: {}
