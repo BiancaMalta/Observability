@@ -15,6 +15,9 @@ filebeat.inputs:
 cloud.id: ""
 cloud.auth: ""
 
+#output.elasticsearch:
+    #pipeline: "pipeline-adatech"
+
 logging.level: debug
 logging.json: true
 logging.selectors: ["*"] 
