@@ -78,4 +78,4 @@ Esta query calcula a latência média do disco somando as taxas de leitura e esc
 Lembre-se de ajustar as métricas e rótulos conforme necessário para se adequarem à sua configuração específica e às métricas que você está coletando. Além disso, é importante ajustar os intervalos de tempo e as janelas de tempo conforme necessário para obter uma visão adequada da saturação ao longo do tempo.
 
 ![Captura de tela de 2024-04-03 16-09-39](https://github.com/BiancaMalta/Observability/assets/92928037/0bd075f3-8ae5-4a28-adee-0e10ffe4bcff)
-![Captura de tela de 2024-04-03 16-10-03](https://github.com/BiancaMalta/Observability/assets/92928037/3a470c24-fced-4171-85c2-e6aae67d72b1)
+![Sem título](https://github.com/BiancaMalta/Observability/assets/92928037/2f9b7ad0-5293-463b-a917-8027f35c91a3)
