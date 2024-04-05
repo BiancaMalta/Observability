@@ -67,9 +67,53 @@ Nesse diretório abordaremos apenas o Prometheus, o Grafana, o Elastic Stack e o
 <details>
   <summary> Prometheus e Grafana </summary> 
 
+### Prometheus
 Prometheus é um sistema de monitoramento e alerta de código aberto. Ele coleta métricas de alvos configurados por meio de um modelo de coleta e armazenamento de séries temporais com um poderoso mecanismo de consulta.
 
-**Documentações Importantes**
+#### Tipos de métricas
+##### Contadores
+Usados para medir incidência, como o número de solicitações recebidas por um servidor ou o número de erros que ocorrem em um sistema.
+##### Histogramas
+Representam a distribuição de valores em um conjunto de dados. Ele divide os dados em intervalos ou "bins" e mostra quantas observações estão em cada intervalo.
+##### Sumários
+Também chamado de estatística resumida, é uma forma de resumir os principais aspectos de um conjunto de dados de uma forma concisa e informativa.Geralmente, inclui estatísticas descritivas, como média, mediana, moda, mínimo, máximo e desvio padrão.
+##### Temporais
+Mostra a mudança do valor ao longo do tempo, identifica padrões sazonais, flutuações de curto e longo prazo, e outros comportamentos temporais significativos.
+
+ 
+#### Tipos de alvos(Targets)
+##### Servidores
+Os hosts são monitorados para garantir que estejam operando corretamente, medindo métricas como CPU, memória, disco, rede e outros recursos.
+##### Bancos de dados
+Sua verificação envolve acompanha o tempo que as consultas levam para serem processadas, identificando consultas lentas que podem impactar negativamente o desempenho, monitora bloqueios de transações e deadlocks, assim como, o tempo de atividade e indisponibilidade.
+##### Aplicações
+Métricas como tempo de resposta, tempo de carregamento da página, erros HTTP, transações por segundo, entre outras, são monitoradas para garantir uma boa experiência do usuário.
+##### Serviços
+Os serviços representam processos ou conjuntos de processos que trabalham juntos para fornecer uma funcionalidade específica.Eles podem incluir serviços web, bancos de dados, servidores de arquivos, etc.
+
+#### Tipos de alertas
+##### Alertas de limiar
+Alertas de limiar são alertas que são acionados quando uma métrica ultrapassa um determinado limite. 
+##### Alertas de anomalia
+Alertas de anomalia são alertas que são acionados quando uma métrica se desvia significativamente de seu comportamento normal. 
+##### Alertas de tendência
+Alertas de tendência são alertas que são acionados quando uma métrica mostra uma tendência significativa ao longo do tempo.
+##### Alertas de correlação
+Alertas de correlação são alertas que são acionados quando duas ou mais métricas mostram um comportamento correlacionado. 
+
+#### Tipos de consultas
+##### Consultas de agregação
+São usadas para realizar cálculos sobre conjuntos de dados, como soma, média, mínimo, máximo, contagem, entre outros. Exemplo: calcular a receita total de vendas em um período de tempo específico.
+##### Consultas de filtro
+Consultas de filtro são consultas que são usadas para filtrar um conjunto de dados com base em um critério específico. Exemplo: recuperar todos os pedidos feitos por um cliente específico.
+##### Consultas de projeção
+Consultas de projeção são consultas que são usadas para selecionar um subconjunto de colunas de um conjunto de dados. Exemplo: selecionar apenas os nomes e emails dos clientes de uma tabela de clientes.
+##### Consultas de transformação
+Consultas de transformação são consultas que são usadas para transformar um conjunto de dados em um formato diferente. Exemplo: converter todas as letras em maiúsculas em uma coluna de nomes de clientes.
+### Grafana
+Enquanto o Prometheus é uma ferramenta de monitoramento de código aberto projetada principalmente para sistemas baseados em métricas, o Grafana é uma plataforma de visualização e análise de dados que pode ser integrada com várias fontes de dados, incluindo o Prometheus.
+
+Em resumo, o Grafana é uma ferramenta poderosa e versátil, oferecendo uma ampla gama de recursos e integrações para atender às necessidades de monitoramento e observabilidade em diferentes domínios e ambientes. Sua flexibilidade, facilidade de uso e extensibilidade o tornam uma escolha popular entre profissionais de TI, desenvolvedores e analistas de dados.
 
 - [Instrumentação](https://prometheus.io/docs/instrumenting/clientlibs/)
 - [Queries](https://prometheus.io/docs/prometheus/latest/querying/basics/)
@@ -78,122 +122,7 @@ Prometheus é um sistema de monitoramento e alerta de código aberto. Ele coleta
 - [Grafana Exemplos](https://play.grafana.org/d/000000012/grafana-play-home?orgId=1)  
 - [Grafana Dashboards](https://grafana.com/grafana/dashboards/)
 - [Loading Test Grafana k6](https://grafana.com/docs/k6/latest/get-started/installation/)
-
-### Tipos de métricas
-- Contadores
-- Histogramas
-- Sumários
-- Temporais
-
-#### Contadores
-Contadores são métricas que representam um valor que pode aumentar ou diminuir ao longo do tempo. Eles são usados para medir coisas como o número de solicitações recebidas por um servidor ou o número de erros que ocorrem em um sistema.
-
-#### Histogramas
-Histogramas são métricas que representam a distribuição de valores em um conjunto de dados. Eles são usados para medir coisas como o tempo de resposta de um servidor ou a utilização de recursos de um sistema.
-
-#### Sumários
-Sumários são métricas que representam a distribuição de valores em um conjunto de dados. Eles são usados para medir coisas como o tempo de resposta de um servidor ou a utilização de recursos de um sistema.
-
-#### Temporais
-Métricas temporais são métricas que representam um valor que muda ao longo do tempo. Elas são usadas para medir coisas como o tempo de resposta de um servidor ou a utilização de recursos de um sistema.
-
- 
-### Tipos de alvos(Targets)
-- Servidores
-- Bancos de dados
-- Aplicações
-- Serviços
-
-#### Servidores
-Servidores são alvos que podem ser monitorados para garantir que estejam funcionando corretamente. Isso pode incluir a verificação de métricas, logs e rastreamentos para garantir que o servidor esteja funcionando corretamente.
-
-#### Bancos de dados
-Bancos de dados são alvos que podem ser monitorados para garantir que estejam funcionando corretamente. Isso pode incluir a verificação de métricas, logs e rastreamentos para garantir que o banco de dados esteja funcionando corretamente.
-
-#### Aplicações
-Aplicações são alvos que podem ser monitorados para garantir que estejam funcionando corretamente. Isso pode incluir a verificação de métricas, logs e rastreamentos para garantir que a aplicação esteja funcionando corretamente.
-
-#### Serviços
-Serviços são alvos que podem ser monitorados para garantir que estejam funcionando corretamente. Isso pode incluir a verificação de métricas, logs e rastreamentos para garantir que o serviço esteja funcionando corretamente.
-
-### Tipos de alertas
-- Alertas de limiar
-- Alertas de anomalia
-- Alertas de tendência
-- Alertas de correlação
-
-#### Alertas de limiar
-Alertas de limiar são alertas que são acionados quando uma métrica ultrapassa um determinado limite. Eles são usados para alertar as equipes de operações e desenvolvimento sobre problemas em um sistema.
-
-#### Alertas de anomalia
-Alertas de anomalia são alertas que são acionados quando uma métrica se desvia significativamente de seu comportamento normal. Eles são usados para alertar as equipes de operações e desenvolvimento sobre problemas em um sistema.
-
-#### Alertas de tendência
-Alertas de tendência são alertas que são acionados quando uma métrica mostra uma tendência significativa ao longo do tempo. Eles são usados para alertar as equipes de operações e desenvolvimento sobre problemas em um sistema.
-
-#### Alertas de correlação
-Alertas de correlação são alertas que são acionados quando duas ou mais métricas mostram um comportamento correlacionado. Eles são usados para alertar as equipes de operações e desenvolvimento sobre problemas em um sistema.
-
-### Tipos de consultas
-- Consultas de agregação
-- Consultas de filtro
-- Consultas de projeção
-- Consultas de transformação
-
-#### Consultas de agregação
-Consultas de agregação são consultas que são usadas para calcular estatísticas sobre um conjunto de dados. Elas são usadas para calcular coisas como a média, a mediana e o desvio padrão de um conjunto de dados.
-
-#### Consultas de filtro
-Consultas de filtro são consultas que são usadas para filtrar um conjunto de dados com base em um critério específico. Elas são usadas para filtrar coisas como solicitações de um determinado tipo ou erros de um determinado tipo.
-
-#### Consultas de projeção
-Consultas de projeção são consultas que são usadas para selecionar um subconjunto de colunas de um conjunto de dados. Elas são usadas para selecionar coisas como o tempo de resposta de um servidor ou a utilização de recursos de um sistema.
-
-#### Consultas de transformação
-Consultas de transformação são consultas que são usadas para transformar um conjunto de dados em um formato diferente. Elas são usadas para transformar coisas como o tempo de resposta de um servidor ou a utilização de recursos de um sistema.
-
-### Tipos de visualizações
-
-- Gráficos de linha
-- Gráficos de barras
-- Gráficos de pizza
-- Gráficos de dispersão
-
-#### Gráficos de linha
-Gráficos de linha são gráficos que são usados para mostrar a mudança de uma métrica ao longo do tempo. Eles são usados para mostrar coisas como o tempo de resposta de um servidor ou a utilização de recursos de um sistema.
-
-#### Gráficos de barras
-Gráficos de barras são gráficos que são usados para mostrar a distribuição de uma métrica em um conjunto de dados. Eles são usados para mostrar coisas como o número de solicitações recebidas por um servidor ou o número de erros que ocorrem em um sistema.
-
-#### Gráficos de pizza
-Gráficos de pizza são gráficos que são usados para mostrar a distribuição de uma métrica em um conjunto de dados. Eles são usados para mostrar coisas como o número de solicitações recebidas por um servidor ou o número de erros que ocorrem em um sistema.
-
-#### Gráficos de dispersão
-Gráficos de dispersão são gráficos que são usados para mostrar a relação entre duas métricas em um conjunto de dados. Eles são usados para mostrar coisas como a relação entre o tempo de resposta de um servidor e a utilização de recursos de um sistema.
-
-### Tipos de métricas
-- Métricas de contagem
-- Métricas de tempo
-- Métricas de porcentagem
-- Métricas de proporção
-
-#### Métricas de contagem
-Métricas de contagem são métricas que representam a contagem de algo. Elas são usadas para medir coisas como o número de solicitações recebidas por um servidor ou o número de erros que ocorrem em um sistema.
-
-#### Métricas de tempo
-Métricas de tempo são métricas que representam a duração de algo. Elas são usadas para medir coisas como o tempo de resposta de um servidor ou o tempo que um sistema leva para processar uma solicitação.
-
-#### Métricas de porcentagem
-Métricas de porcentagem são métricas que representam a proporção de algo em relação a um todo. Elas são usadas para medir coisas como a utilização de recursos de um sistema ou a taxa de erro de um sistema.
-
-#### Métricas de proporção
-Métricas de proporção são métricas que representam a relação entre duas métricas. Elas são usadas para medir coisas como a relação entre o tempo de resposta de um servidor e a utilização de recursos de um sistema.
-
-### Tipos de logs
-- Logs de aplicativos
-- Logs de infraestrutura
-- Logs de segurança
-- Logs de auditoria
+  
 </details>
 <details>
   <summary>Elastic Stack e o Graylog</summary>  
