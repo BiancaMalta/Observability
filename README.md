@@ -117,12 +117,10 @@ Aplicações são alvos que podem ser monitorados para garantir que estejam func
 Serviços são alvos que podem ser monitorados para garantir que estejam funcionando corretamente. Isso pode incluir a verificação de métricas, logs e rastreamentos para garantir que o serviço esteja funcionando corretamente.
 
 ### Tipos de alertas
-
 - Alertas de limiar
 - Alertas de anomalia
 - Alertas de tendência
 - Alertas de correlação
-
 
 #### Alertas de limiar
 Alertas de limiar são alertas que são acionados quando uma métrica ultrapassa um determinado limite. Eles são usados para alertar as equipes de operações e desenvolvimento sobre problemas em um sistema.
@@ -179,7 +177,6 @@ Gráficos de dispersão são gráficos que são usados para mostrar a relação 
 - Métricas de porcentagem
 - Métricas de proporção
 
-
 #### Métricas de contagem
 Métricas de contagem são métricas que representam a contagem de algo. Elas são usadas para medir coisas como o número de solicitações recebidas por um servidor ou o número de erros que ocorrem em um sistema.
 
@@ -199,57 +196,41 @@ Métricas de proporção são métricas que representam a relação entre duas m
 - Logs de auditoria
 </details>
 <details>
-  <summary>Dúvidas</summary>  
-Durante a execução do exercício da última aula, alguns erros apareceram:
+  <summary>Elastic Stack e o Graylog</summary>  
 
-1. Ao executar o Docker Compose, o terminal me retornou a seguinte imagem:
+### Elastic Stack:
+A plataforma de análise distribuída consiste em várias ferramentas interconectadas desenvolvidas pela Elastic.
 
-![Captura de tela de 2024-03-22 10-29-23](https://github.com/BiancaMalta/Observability/assets/92928037/a17566bd-cd0f-451b-83fe-aa4b3aaba69e)
+#### Componentes Principais:
+- Elasticsearch: Um motor de busca distribuído e escalável que armazena, indexa e permite pesquisar dados de forma eficiente.
+- Logstash: Um pipeline de ingestão de dados que coleta, processa e envia logs e outros dados para o Elasticsearch.
+- Kibana: Uma interface de usuário para visualizar e explorar dados indexados no Elasticsearch, oferecendo recursos avançados de análise e visualização.
+- Beats: Conjunto de agentes de coleta de dados leves que enviam dados de logs e métricas diretamente para o Elasticsearch ou para o Logstash.
 
-Tentei solucionar limpando o docker e subindo novamente o Docker Compose:
-```
-docker system prune
-docker-compose up -d
-```
-Entretanto, o erro persistiu. Visto isso, aumentei o valor do timeout configurando a variável de ambiente: 
-```
-export COMPOSE_HTTP_TIMEOUT=120
-docker-compose up -d
-```
-No entanto, o erro continuou.
+#### Casos de Uso:
+- Monitoramento de infraestrutura e aplicativos.
+- Análise de logs de segurança.
+- Análise de logs de servidores e aplicações.
+- Monitoramento de métricas de desempenho.
 
-<img align="right" src="https://github.com/BiancaMalta/Observability/assets/92928037/2d0f2d92-932e-4c0d-b3f4-dc1beafdaca4" width="45%"/>
-Resolvi verificar cada página ativa, o me trouxe o seguinte feedback:
+### Graylog:
+Graylog é uma plataforma de gerenciamento de logs de código aberto que facilita a coleta, processamento e análise em tempo real. 
 
-2. Grafana não havia logado, cheguei a criar uma conta, entretanto ele não aceitou. Como segunda medida, procurei no código um usuário e uma senha, encontrando `adatech` e `adatech@2233`o que permitiu o meu login. 
+#### Componentes Principais:
+- Graylog Server: O núcleo da plataforma, responsável pela ingestão, processamento e indexação de logs.
+- MongoDB: Um banco de dados NoSQL usado para armazenar metadados e configurações do Graylog.
+- Graylog Web Interface: Uma interface web para pesquisar, visualizar e analisar logs, além de configurar alertas e dashboards.
+- Graylog Collector Sidecar: Uma ferramenta para coletar logs de servidores e dispositivos e enviá-los para o Graylog Server.
 
-**Meu questionamento é porque ele não entrou automaticamente, já que estava no código.**
+### Diferenças e Comparação:
+#### Arquitetura:
+- Elastic Stack geralmente utiliza Elasticsearch como mecanismo de armazenamento e busca.
+- Graylog utiliza Elasticsearch para armazenamento e busca de dados, mas também requer MongoDB para armazenamento de metadados e configurações.
 
-
-3. A página de votação estava ativa, porém, ao tentar votar, ela me dava a resposta abaixo:
-
-<img src="https://github.com/BiancaMalta/Observability/assets/92928037/4188d002-c1bd-47e1-993d-0cdf1f7a98d6" width="70%"/>
-
-Imaginei que o banco de dados não estava conectado e, ao averiguar os contêineres, notei que o redis e o prometheus estavam desconectados.
-
-<img src="https://github.com/BiancaMalta/Observability/assets/92928037/abd797c0-dc4a-4fde-b321-69ba5ac68a13" width="70%"/>
-
-Tentei start eles novamente, ação que funcionou apenas com o armazenamento de estrutura de dados em memória, possibilitando a votação.
-
-<img src="https://github.com/BiancaMalta/Observability/assets/92928037/8bf3b446-aafc-46c8-a925-8fcf3d2f7972" width="45%"/>
-
-<img src="https://github.com/BiancaMalta/Observability/assets/92928037/e9756ba0-2184-4346-8efe-1ab6a2308262" width="90%"/>
-
-**O que me questiono é porque ele não subiu com todos os contêineres.**
-
-4. Por fim, fui tentar fazer o dashboard solicitado e me deparei com outro erro:
-
-![Captura de tela de 2024-03-22 14-32-32](https://github.com/BiancaMalta/Observability/assets/92928037/89185328-3c40-4297-90eb-45f0d28f40f2)
-
-Aparentemente, os dados não estavam conectados justamente por falta do prometheus. Mesmo revendo à aula, não soube como solucionar isso.
+Em resumo, tanto Elastic Stack quanto Graylog são excelentes soluções para gerenciamento de logs. A escolha entre eles geralmente depende das necessidades específicas da organização, das preferências de arquitetura e das habilidades da equipe técnica.
 </details>
 <details>
-  <summary>Desafio 01</summary>
+  <summary>Desafio</summary>
 Criar um dashboard de observabilidade com base nas melhores práticas, usando métricas do Prometheus, para monitorar um sistema composto por uma API Rest em Python, um Worker em Node.js, um Frontend em Node.js, um banco de dados PostgreSQL e um Redis pode ser dividido em várias etapas.
 
 ### 1. Definição de Objetivos e Requisitos
